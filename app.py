@@ -13,7 +13,7 @@ def init_connections():
     # Klíče se načítají ze Streamlit Secrets pro maximální bezpečnost
     client = openai.OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
     pc = Pinecone(api_key=st.secrets["PINECONE_API_KEY"])
-    index = pc.Index("veraibot1536")
+    index = pc.Index("veraibot")
     return client, index
 
 def clean_html(text):
@@ -90,3 +90,4 @@ try:
 
 except Exception as e:
     st.error(f"Chyba konfigurace: Ujistěte se, že máte nastaveny API klíče v Streamlit Secrets. Detaily: {e}")
+
