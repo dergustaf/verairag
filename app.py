@@ -26,7 +26,7 @@ st.markdown("Prohledávejte svůj osobní archiv (podcasty, blogy, newslettery a
 
 try:
     client, index = init_connections()
-    namespaces = ['newsletter_cs', 'podcast_cs', 'blog-cs', 'book-mybook-cs']
+    namespaces = ['__default__']
 
     # Vstup od uživatele
     query = st.text_input("Na co se chcete kouče zeptat?", placeholder="Např. Jak efektivně zvládat stres?")
@@ -90,4 +90,5 @@ try:
 
 except Exception as e:
     st.error(f"Chyba konfigurace: Ujistěte se, že máte nastaveny API klíče v Streamlit Secrets. Detaily: {e}")
+
 
