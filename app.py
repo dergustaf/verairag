@@ -57,7 +57,7 @@ try:
             for ns in namespaces:
                 results = index.query(
                     vector=query_vector, 
-                    top_k=3, 
+                    top_k=10, # Increased from 3
                     namespace=ns, 
                     include_metadata=True,
                     filter=metadata_filter if metadata_filter else None
@@ -130,3 +130,4 @@ try:
 
 except Exception as e:
     st.error(f"Chyba konfigurace: Ujistěte se, že máte nastaveny API klíče v Streamlit Secrets. Detaily: {e}")
+
