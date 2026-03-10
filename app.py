@@ -48,9 +48,19 @@ try:
             query_vector = client.embeddings.create(input=[hyde_text], model="text-embedding-3-small").data[0].embedding
 
             # Příprava filtru metadat, pokud uživatel zadal typ
+            # Prepare metadata filter
             metadata_filter = {}
+            
+            filters = []
             if doc_type_filter:
-                metadata_filter = {"type": {"$eq": doc_type_filter}}
+                filters.append({"type": {"$eq": doc_type_filter}})
+            if doc_title_filter:
+                filters.append({"title": {"$eq": doc_title_filter}})
+                
+            if len(filters) == 1:
+                metadata_filter = filters[0]
+            elif len(filters) > 1:
+                metadata_filter = {"$and": filters}
 
             # 3. Vyhledávání v Pinecone napříč všemi jmennými prostory s filtrem
             all_matches = []
@@ -130,4 +140,5 @@ try:
 
 except Exception as e:
     st.error(f"Chyba konfigurace: Ujistěte se, že máte nastaveny API klíče v Streamlit Secrets. Detaily: {e}")
+
 
