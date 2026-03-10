@@ -76,7 +76,7 @@ try:
                 all_matches.extend(results.get('matches', []))
 
             # Seřazení podle nejlepší shody a oříznutí na top 5
-            all_matches = sorted(all_matches, key=lambda x: x['score'], reverse=True)[:5]
+            all_matches = sorted(all_matches, key=lambda x: x['score'], reverse=True)[:15]
             
             context_parts = []
             sources_info = []
@@ -141,3 +141,4 @@ try:
 
 except Exception as e:
     st.error(f"Chyba konfigurace: Ujistěte se, že máte nastaveny API klíče v Streamlit Secrets. Detaily: {e}")
+
